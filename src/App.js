@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import GlobalStyle from "./Global";
+import Home from "./Screens/Home";
+import NuevoVideo from "./Screens/NuevoVideo";
+import NuevaCategoria from "./Screens/NuevaCategoria";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return (<>
+    <GlobalStyle />
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/nuevoVideo' element={<NuevoVideo/>} />
+        <Route path="/nuevaCategoria" element={< NuevaCategoria/>} />
+      </Routes>
+    </Router>
+    </>)
 }
 
 export default App;
