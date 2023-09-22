@@ -31,13 +31,13 @@ const StyledCargandoTitulo = styled.h2`
 `
 
 const StyledCargandoCirculo = styled(CircularProgress)`
-    
+    &&{color: #b73d3d;}
 `
 
 const CargandoContenido = () => {
     return <StyledCargandoContainer>
         <StyledCargandoTitulo>Cargando...</StyledCargandoTitulo>
-        <StyledCargandoCirculo color="inherit"/>
+        <StyledCargandoCirculo color="inherit" size={100}/>
     </StyledCargandoContainer>
 }
 

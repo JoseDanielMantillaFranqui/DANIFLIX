@@ -15,6 +15,10 @@ const StyledCarrusel = styled.section`
         margin-top: ${props => props.marginTopTablet || 0}rem; 
         padding: 2rem 2rem;
   }
+  @media (min-width: 901px) and (max-width:1400px) {
+        margin-top: ${props => props.marginTopLaptop + 1 || 0}rem; 
+        padding: 2rem 2rem;
+  }
 `
 
 const CarruselCategoria = styled(BannerCategoria)`
@@ -26,8 +30,8 @@ const CarruselCategoria = styled(BannerCategoria)`
 `
 
 const Carrusel = (props) => {
-    const { marginTop, marginTopMobile, marginTopTablet, DatosCarrusel, categoriaProp } = props
-    return <StyledCarrusel marginTop={marginTop} marginTopMobile={marginTopMobile} marginTopTablet={marginTopTablet}>
+    const { marginTop, marginTopMobile, marginTopTablet, marginTopLaptop, DatosCarrusel, categoriaProp } = props
+    return <StyledCarrusel marginTop={marginTop} marginTopMobile={marginTopMobile} marginTopTablet={marginTopTablet} marginTopLaptop={marginTopLaptop} >
         { categoriaProp === undefined ? <div></div> : <CarruselCategoria>{categoriaProp}</CarruselCategoria> }
         <MySlider DatosCarrusel={DatosCarrusel}/>
     </StyledCarrusel>

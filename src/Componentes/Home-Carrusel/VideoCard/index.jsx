@@ -10,6 +10,10 @@ const StyledVideo = styled.iframe`
         width: 320px;
         height: 180px;
   }
+  @media (min-width: 901px) and (max-width: 1400px) {
+        width: 350px;
+        height: 180px;
+  }
 `
 
 const CardVideo = (props) => {
