@@ -2,6 +2,7 @@ import Header from "../Componentes/Header";
 import Banner from "../Componentes/Banner";
 import Footer from "../Componentes/Footer";
 import Carrusel from "../Componentes/Home-Carrusel/Carrusel";
+import CargandoContenido from "../Componentes/CargandoContenido";
 //import data from "../datos/datos-iniciales.json";
 import { buscar } from "../datos";
 import { useState, useEffect } from "react";
@@ -11,12 +12,22 @@ const Home = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [data, setData] = useState({ "categorias":[] });
+  const [tieneVideos, setTieneVideos] = useState(false)
 
   useEffect(() => {
    buscar(`/db`, setData)
 }, [])
 
-  console.log(data)
+useEffect(() => {
+  // Verificar si el objeto "videos" existe en los datos
+  if ("videos" in data) {
+    setTieneVideos(true);
+  } else {
+    setTieneVideos(false);
+  }
+}, [data]);
+
+  console.log(data,tieneVideos)
   const categorias = data.categorias;
   const carruseles = categorias;
 
@@ -40,7 +51,7 @@ const Home = () => {
     <>
       <Header showBtn={true}/>
       <Banner />
-      {carruseles.map((categoria, index) => {
+      {tieneVideos === true && carruseles.map((categoria, index) => {
                 const videosCategoria = data.videos.filter(
                   (video) => video.Categoria === categoria.nombre
                 );
@@ -53,6 +64,7 @@ const Home = () => {
           categoriaProp={index === 0 && !isMobile ? undefined : categoria.nombre}
         />
 })}
+{ tieneVideos === false && <CargandoContenido /> }
       <Footer />
     </>
   );
