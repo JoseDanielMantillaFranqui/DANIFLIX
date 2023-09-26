@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import CampoTexto from "../../CampoTexto"
 import SelectCategoria from "../../CampoSelect"
+import RegistradoConExito from "../../RegistradoConExito"
 import { Button } from "@mui/material"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { validarLink, validarCategoria } from "./validaciones"
 import { Link } from "react-router-dom"
 import { enviarDatos } from "../../../datos"
@@ -87,6 +88,20 @@ const FormularioNuevoVideo = () => {
 
     const [ link, setLink ] = useState({ value:"", valid:null })
     const [ categoria, setCategoria ] = useState({ value:"", valid:null })
+    const [ success, setSuccess ] = useState(false)
+
+    
+  useEffect(() => {
+    if (success) {
+      // Si success es true, programamos un timeout para volverlo a false después de 5 segundos.
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 5000); // 5000 milisegundos = 5 segundos
+
+      // Limpia el timeout si el componente se desmonta antes de que expire el tiempo.
+      return () => clearTimeout(timer);
+    }
+  }, [success]); // Se ejecutará cuando el estado success cambie.
     
     return <StyledFormNewVideo onSubmit={(e) => {
         e.preventDefault()
@@ -111,11 +126,13 @@ const FormularioNuevoVideo = () => {
                     // Manejar el error de la solicitud
                 }
                 );
+            setSuccess(true);
         } else {
             console.log("EL link es",link.valid, "y la categoria es", categoria.valid)
         }
         
     }}>
+        {success === true && <RegistradoConExito titulo="Se ha agregado un video con éxito"/>}
         <FormTitulo>NUEVO VIDEO</FormTitulo>
         <CampoTexto label="Link del Video" value={link.value} setValue={setLink} isValid={link.valid} helperText="Ingresa un link válido para etiquetas iframe" validator={validarLink}/>
         <SelectCategoria value={categoria.value} setCategoria={setCategoria} isValid={categoria.valid}/>

@@ -5,6 +5,7 @@ import { validarNombreCategoria, validarDescripcion } from "./validaciones";
 import { TextField } from "@mui/material";
 import { useState, useEffect } from "react";
 import Tabla from "../../Tabla";
+import RegistradoConExito from "../../RegistradoConExito";
 import { enviarDatos } from "../../../datos";
 import { buscar } from "../../../datos";
 import { v4 as generadorID } from "uuid";
@@ -67,6 +68,21 @@ const FormularioNuevaCategoria = () => {
 
     const [ nombreCategoria, setNombreCategoria ] = useState({ value: "", valid: null})
     const [ descripcion, setDescripcion ] = useState({value:"", valid:null})
+    const [ success, setSuccess ] = useState(false)
+
+    
+    useEffect(() => {
+      if (success) {
+        // Si success es true, programamos un timeout para volverlo a false después de 5 segundos.
+        const timer = setTimeout(() => {
+          setSuccess(false);
+        }, 5000); // 5000 milisegundos = 5 segundos
+  
+        // Limpia el timeout si el componente se desmonta antes de que expire el tiempo.
+        return () => clearTimeout(timer);
+      }
+    }, [success]); // Se ejecutará cuando el estado success cambie.
+
     return <StyledFormNewCategory onSubmit={(e) => {
         e.preventDefault()
         const isCategoryValid = validarNombreCategoria(nombreCategoria.value)
@@ -89,11 +105,13 @@ const FormularioNuevaCategoria = () => {
                    console.error("Solicitud POST fallida:", error);
                    // Manejar el error de la solicitud
                }
-               );         
+               ); 
+            setSuccess(true);        
         } else {
             console.log("La categoria es",nombreCategoria.valid,"La descripcion es",descripcion.valid)
         }
     }}>
+      {success === true && <RegistradoConExito titulo="Se ha agregado una categoria con éxito"/>}
         <FormTitulo>Nueva Categoria</FormTitulo>
         <CampoTexto label="Nombre" value={nombreCategoria.value} setValue={setNombreCategoria} isValid={nombreCategoria.valid} helperText="Ingresa al menos tres caracteres" validator={validarNombreCategoria}/>
         <Textarea
