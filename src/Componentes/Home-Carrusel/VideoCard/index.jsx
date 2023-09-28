@@ -18,7 +18,8 @@ const StyledVideo = styled.iframe`
 
 const CardVideo = (props) => {
     const { link } = props
-    return <StyledVideo src={link} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+    const src = `https://www.youtube.com/embed/${link}`
+    return <StyledVideo src={src} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
 }
 
 export default CardVideo

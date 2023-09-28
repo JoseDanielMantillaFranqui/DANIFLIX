@@ -1,5 +1,5 @@
 export const validarLink = (link) => {
-    return link.length === 61 ? true : false 
+    return link.length === 11 ? true : false 
 }
 
 export const validarCategoria = (categoria) => {
