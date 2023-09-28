@@ -134,7 +134,7 @@ const FormularioNuevoVideo = () => {
     }}>
         {success === true && <RegistradoConExito titulo="Se ha agregado un video con éxito"/>}
         <FormTitulo>NUEVO VIDEO</FormTitulo>
-        <CampoTexto label="Link del Video" value={link.value} setValue={setLink} isValid={link.valid} helperText="Ingresa un link válido para etiquetas iframe" validator={validarLink}/>
+        <CampoTexto label="ID del Video" value={link.value} setValue={setLink} isValid={link.valid} helperText="Ingresa un ID de video de YT válido" validator={validarLink}/>
         <SelectCategoria value={categoria.value} setCategoria={setCategoria} isValid={categoria.valid}/>
         <BotonesContainer>
             <BotonesPrincipalesContainer>
