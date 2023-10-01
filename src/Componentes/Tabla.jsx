@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { eliminarCategoria } from "../datos";
 
 const StyledTable = styled.table`
     background-color: #e10b0b33;
@@ -55,7 +56,19 @@ const Tabla = (props) => {
             <StyledTd>{categoriaKey.nombre}</StyledTd>
             <StyledTd>{categoriaKey.descripcion}</StyledTd>
             <StyledTd>
-              <StyledRemoverBtn>
+              <StyledRemoverBtn onClick={() => {
+              // Llamada para eliminar una categoría
+              eliminarCategoria(`/categorias/${categoriaKey.id}`, 
+                (data) => {
+                  console.log("Categoría eliminada exitosamente:", data);
+                  // Realiza cualquier acción adicional que necesites aquí después de eliminar la categoría.
+                },
+                (error) => {
+                  console.error("Error al eliminar la categoría:", error);
+                  // Maneja el error de acuerdo a tus necesidades.
+                }
+              );
+              }}>
                 Remover
               </StyledRemoverBtn>
             </StyledTd>

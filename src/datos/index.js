@@ -27,6 +27,20 @@ export const enviarDatos = async (url, datos, onSuccess, onError) => {
   }
 };
 
+export const eliminarCategoria = async (url, onSuccess, onError) => {
+  try {
+    const respuesta = await api.delete(url);
+    if (onSuccess) {
+      onSuccess(respuesta.data);
+    }
+  } catch (error) {
+    console.error("Error al realizar la solicitud POST:", error);
+    if (onError) {
+      onError(error);
+    }
+  }
+};
+
 
 
 
