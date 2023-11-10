@@ -46,7 +46,7 @@ const MySlider = (props) => {
       return <Slider {...settings}>
     {DatosCarrusel.map((video, index) => (
         <div key={index}>
-          <CardVideo link={video.Link} />
+          <CardVideo link={video.Link} id={video.id}/>
         </div>
       ))}
     </Slider>

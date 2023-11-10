@@ -14,7 +14,7 @@ const BannerContainer = styled.div`
     width: 100%;
     height: 0;
     position: relative;
-    bottom: 25rem;
+    bottom: 20rem;
     @media (max-width: 600px) {
         bottom: 7rem;
         flex-direction:column;
@@ -22,6 +22,13 @@ const BannerContainer = styled.div`
   @media (min-width: 601px) and (max-width:900px) {
         bottom: 15rem;
         flex-direction:column;
+  }
+  @media screen and (min-width: 901px) and (max-width: 1200px) {
+    align-items: center;
+    bottom: 14rem;
+  }
+  @media screen and (min-width: 1201px) and (max-width: 1600px) {
+    align-items: center;
   }
 `
 
@@ -35,6 +42,7 @@ const BannerVideo = styled.iframe`
     width: 500px;
     height: 280px;
     border-radius: 20px;
+    margin-right: 2rem;
     @media (max-width: 900px) {
     display: none;
   }
