@@ -41,6 +41,26 @@ export const eliminarCategoria = async (url, onSuccess, onError) => {
   }
 };
 
+export const apiYouTube = axios.create({
+  baseURL: "https://www.googleapis.com/youtube/v3"
+});
+
+export const extraerMetaDatosDeVideo = async (url, setData) => {
+  try {
+    const respuesta = await apiYouTube.get(url);
+    console.log(respuesta,`esta es`)
+    const title = respuesta.data.items[0].snippet.title;
+    const description = respuesta.data.items[0].snippet.description;
+    
+    const videoData = {
+      title, description
+    }
+
+    setData(videoData);
+  } catch (error) {
+    console.error("Error al realizar la solicitud GET:", error);
+  }
+};
 
 
 
