@@ -5,7 +5,6 @@ import CardVideo from "../VideoCard";
 
 const MySlider = (props) => {
     const { DatosCarrusel } = props
-    console.log("Estos son",DatosCarrusel)
       
     var settings = {
         dots: true,

@@ -90,7 +90,6 @@ const FormularioNuevaCategoria = () => {
         const isDescriptionValid = validarDescripcion(descripcion.value)
         setDescripcion({value:descripcion.value,valid:isDescriptionValid})
         if (nombreCategoria.valid === true && descripcion.valid === true) {
-           console.log("Enviar nombre Categoria",nombreCategoria.value,"Y descripcion:",descripcion.value);
            const datosAEnviar =  {
             "nombre": nombreCategoria.value,
             "descripcion" : descripcion.value,

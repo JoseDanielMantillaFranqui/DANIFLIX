@@ -34,7 +34,7 @@ const StyledVideo = styled.iframe`
 
 const VideoTitle = styled.h3`
     font-size:2rem;
-    text-align: center;
+    text-align: start;
     width: 70%;
     color: #fe5353;
     text-shadow: 0 0 10px red;
@@ -45,7 +45,7 @@ const VideoTitle = styled.h3`
 
 const VideoTitleDescription = styled.h4`
     font-size:1.5rem;
-    text-align: center;
+    text-align: start;
     width: 70%;
     color: #cecece;
     text-shadow: 0 0 10px #f9fdfd48;

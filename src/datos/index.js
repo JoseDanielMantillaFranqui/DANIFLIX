@@ -48,7 +48,6 @@ export const apiYouTube = axios.create({
 export const extraerMetaDatosDeVideo = async (url, setData) => {
   try {
     const respuesta = await apiYouTube.get(url);
-    console.log(respuesta,`esta es`)
     const title = respuesta.data.items[0].snippet.title;
     const description = respuesta.data.items[0].snippet.description;
     

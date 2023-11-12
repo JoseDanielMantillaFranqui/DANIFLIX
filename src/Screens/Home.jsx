@@ -27,7 +27,6 @@ useEffect(() => {
   }
 }, [data]);
 
-  console.log(data,tieneVideos)
   const categorias = data.categorias;
   const carruseles = categorias;
 
@@ -54,9 +53,9 @@ useEffect(() => {
       {tieneVideos === true && carruseles.map((categoria, index) => {
                 const videosCategoria = data.videos.filter(
                   (video) => video.Categoria === categoria.nombre
-                );
+                );        
         return <Carrusel
-          key={categoria}
+          key={categoria.id}
           DatosCarrusel={videosCategoria}
           marginTop={index === 0 ? 32 : undefined}
           marginTopMobile={index === 0 ? 8 : undefined}
