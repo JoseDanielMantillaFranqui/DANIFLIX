@@ -76,7 +76,6 @@ const Video = () => {
 
     useEffect(() => {
         extraerMetaDatosDeVideo(`videos?id=${idDeYouTube.Link}&part=snippet&key=${apiKey}`, setMetaData)
-        console.log(metaData)
     }, [idDeYouTube])
 
     const src = `https://www.youtube.com/embed/${idDeYouTube.Link}`

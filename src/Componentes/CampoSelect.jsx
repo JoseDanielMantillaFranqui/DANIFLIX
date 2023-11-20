@@ -94,11 +94,9 @@ const SelectCategoria = (props) => {
           value={value}
           onChange={(e) => {
             setCategoria({value:e.target.value, valid:null});
-            console.log(value);
         }}
         onBlur={(e) => {
             setCategoria({value:e.target.value, valid:validarCategoria(e.target.value)});
-            console.log(value);
         }}
         >
           {/*<StyledMenuItem value="Ciencia">Ciencia</StyledMenuItem>

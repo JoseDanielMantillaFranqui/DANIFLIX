@@ -110,7 +110,6 @@ const FormularioNuevoVideo = () => {
         const isCategoryValid = validarCategoria(categoria.value)
         setCategoria({value:categoria.value, valid:isCategoryValid})
         if (link.valid === true && categoria.valid) {
-            //console.log("Enviar link",link.value,"Enviar categoria",categoria.value);
             const datosAEnviar = {
                 "Link": link.value,
                 "Categoria": categoria.value,
