@@ -1,7 +1,7 @@
 export const validarNombreCategoria = (nombreCategoria) => {
-    return nombreCategoria.length > 2 ? true : false
+  return nombreCategoria.length > 2
 }
 
 export const validarDescripcion = (descripcion) => {
-    return descripcion.length > 10 && descripcion.length < 100 ? true : false
+  return !!(descripcion.length > 10 && descripcion.length < 100)
 }

@@ -1,18 +1,16 @@
-import styled from "styled-components";
-import { Select, FormControl, InputLabel, MenuItem, FormHelperText } from "@mui/material";
-//import data from "../datos/datos-iniciales.json"
-import { useState, useEffect } from "react";
-import { buscar } from "../datos";
-import { validarCategoria } from "./Registro/Registro-Video/validaciones";
-
-
+import styled from 'styled-components'
+import { Select, FormControl, InputLabel, MenuItem, FormHelperText } from '@mui/material'
+// import data from "../datos/datos-iniciales.json"
+import { useState, useEffect } from 'react'
+import { buscar } from '../datos'
+import { validarCategoria } from './Registro/Registro-Video/validaciones'
 
 const StyledFormControl = styled(FormControl)`
   && {
     color: white;
     margin-top: 4px;
   }
-`;
+`
 
 const StyledInputLabel = styled(InputLabel)`
   && {
@@ -25,7 +23,7 @@ const StyledInputLabel = styled(InputLabel)`
       color: white;
     }
   }
-`;
+`
 
 const StyledSelect = styled(Select)`
   && {
@@ -45,7 +43,7 @@ const StyledSelect = styled(Select)`
       fill: white;
     }
   }
-`;
+`
 
 const StyledMenuItem = styled(MenuItem)`
   && {
@@ -67,50 +65,48 @@ const StyledMenuItem = styled(MenuItem)`
       background-color: #212121;
     }
   }
-`;
+`
 
 const SelectCategoria = (props) => {
+  const { value, setCategoria, isValid } = props
 
-    const { value, setCategoria, isValid } = props
+  const [data, setData] = useState({ categorias: [] })
 
-    const [data, setData] = useState({ "categorias":[] });
-
-    useEffect(() => {
-     buscar(`/db`, setData)
+  useEffect(() => {
+    buscar('/db', setData)
   }, [])
 
-    const categorias = data.categorias
+  const categorias = data.categorias
 
   return (
     <>
-      <StyledFormControl variant="filled" error={isValid === false ? true : false}>
-        <StyledInputLabel id="demo-simple-select-filled-label">
+      <StyledFormControl variant='filled' error={isValid === false}>
+        <StyledInputLabel id='demo-simple-select-filled-label'>
           Categoria
         </StyledInputLabel>
         <StyledSelect
-          labelId="demo-simple-select-filled-label"
-          id="demo-simple-select-filled"
-          MenuProps={{ PaperProps: { style: { backgroundColor: "#212121" } } }}
+          labelId='demo-simple-select-filled-label'
+          id='demo-simple-select-filled'
+          MenuProps={{ PaperProps: { style: { backgroundColor: '#212121' } } }}
           value={value}
           onChange={(e) => {
-            setCategoria({value:e.target.value, valid:null});
-        }}
-        onBlur={(e) => {
-            setCategoria({value:e.target.value, valid:validarCategoria(e.target.value)});
-        }}
+            setCategoria({ value: e.target.value, valid: null })
+          }}
+          onBlur={(e) => {
+            setCategoria({ value: e.target.value, valid: validarCategoria(e.target.value) })
+          }}
         >
-          {/*<StyledMenuItem value="Ciencia">Ciencia</StyledMenuItem>
+          {/* <StyledMenuItem value="Ciencia">Ciencia</StyledMenuItem>
           <StyledMenuItem value="Tecnología">Tecnología</StyledMenuItem>
-            <StyledMenuItem value="Música">Música</StyledMenuItem>*/}
-            {categorias.map((categoria, index) => (
-                <StyledMenuItem key={index} value={categoria.nombre}>{categoria.nombre}</StyledMenuItem>
-            ))}
+            <StyledMenuItem value="Música">Música</StyledMenuItem> */}
+          {categorias.map((categoria, index) => (
+            <StyledMenuItem key={index} value={categoria.nombre}>{categoria.nombre}</StyledMenuItem>
+          ))}
         </StyledSelect>
-        {isValid === false ? <FormHelperText>Debes escoger una categoria</FormHelperText> : <div></div>}
+        {isValid === false ? <FormHelperText>Debes escoger una categoria</FormHelperText> : <div />}
       </StyledFormControl>
     </>
-  );
-};
+  )
+}
 
-export default SelectCategoria;
-
+export default SelectCategoria

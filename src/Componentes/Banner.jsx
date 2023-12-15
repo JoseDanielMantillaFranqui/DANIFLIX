@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const StyledBanner = styled.section`
     width: 100%;
@@ -47,7 +47,7 @@ const BannerVideo = styled.iframe`
     display: none;
   }
 `
- export const BannerCategoria = styled.p`
+export const BannerCategoria = styled.p`
     font-family: 'Abel', sans-serif;
     font-size: 4rem;
     font-weight: 500;
@@ -109,18 +109,20 @@ const BannerVideoMobileLink = styled.a`
 `
 
 const Banner = () => {
-    return <StyledBanner>
-        <StyledImage src="/img/banner.png"/>
-        <BannerContainer>
-            <BannerInfo>
-                <BannerCategoria>Ciencia</BannerCategoria>
-                <BannerTituloVideo>¿Cómo funciona una bola de plasma?</BannerTituloVideo>
-                <BannerDescripcionVideo>¡Bienvenidos a este fascinante viaje al mundo de la ciencia y la electricidad! Hoy, vamos a adentrarnos en el asombroso funcionamiento de una lámpara de plasma, un dispositivo que desafía las leyes de la física y nos ofrece un espectáculo de luces y colores inigualable. Descubriremos cómo la electricidad y el gas se combinan para crear este fenómeno asombroso que ilumina no solo nuestras habitaciones, ¡sino también nuestra curiosidad científica! </BannerDescripcionVideo>
-            </BannerInfo>
-            <BannerVideo src="https://www.youtube.com/embed/NGwq35626sU?si=HMtuuvq736kp1XPX" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen/>
-            <BannerVideoMobileLink href="https://youtu.be/NGwq35626sU?si=AhW89VBWghzxucnE">Ver Video</BannerVideoMobileLink>
-        </BannerContainer>
+  return (
+    <StyledBanner>
+      <StyledImage src='/img/banner.png' />
+      <BannerContainer>
+        <BannerInfo>
+          <BannerCategoria>Ciencia</BannerCategoria>
+          <BannerTituloVideo>¿Cómo funciona una bola de plasma?</BannerTituloVideo>
+          <BannerDescripcionVideo>¡Bienvenidos a este fascinante viaje al mundo de la ciencia y la electricidad! Hoy, vamos a adentrarnos en el asombroso funcionamiento de una lámpara de plasma, un dispositivo que desafía las leyes de la física y nos ofrece un espectáculo de luces y colores inigualable. Descubriremos cómo la electricidad y el gas se combinan para crear este fenómeno asombroso que ilumina no solo nuestras habitaciones, ¡sino también nuestra curiosidad científica! </BannerDescripcionVideo>
+        </BannerInfo>
+        <BannerVideo src='https://www.youtube.com/embed/NGwq35626sU?si=HMtuuvq736kp1XPX' title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowFullScreen />
+        <BannerVideoMobileLink href='https://youtu.be/NGwq35626sU?si=AhW89VBWghzxucnE'>Ver Video</BannerVideoMobileLink>
+      </BannerContainer>
     </StyledBanner>
+  )
 }
 
 export default Banner

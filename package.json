@@ -18,6 +18,7 @@
     "react-slick": "^0.29.0",
     "react-youtube": "^10.1.0",
     "slick-carousel": "^1.8.1",
+    "standard": "17.1.0",
     "styled-components": "^6.0.7",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
@@ -29,10 +30,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "./node_modules/standard/eslintrc.json"
   },
   "browserslist": {
     "production": [

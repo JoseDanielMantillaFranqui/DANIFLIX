@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import video404 from "../assets/video/video404.mp4"
+import styled from 'styled-components'
+import video404 from '../assets/video/video404.mp4'
 
 const StyledVideo404 = styled.video`
     width:100%;
@@ -13,9 +13,11 @@ const StyledContainer = styled.section`
 `
 
 const Video404 = () => {
-    return <StyledContainer>
-    <StyledVideo404 src={video404} autoPlay muted loop/>
+  return (
+    <StyledContainer>
+      <StyledVideo404 src={video404} autoPlay muted loop />
     </StyledContainer>
+  )
 }
 
 export default Video404

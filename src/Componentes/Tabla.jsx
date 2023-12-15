@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { eliminarCategoria } from "../datos";
+import styled from 'styled-components'
+import { eliminarCategoria } from '../datos'
 
 const StyledTable = styled.table`
     background-color: #e10b0b33;
@@ -38,45 +38,47 @@ const StyledRemoverBtn = styled.button`
     }
 `
 
-
 const Tabla = (props) => {
-    const { data } = props
-    return <StyledTable>
-    <thead>
-      <tr>
-        <StyledTh>Nombre</StyledTh>
-        <StyledTh>Descripción</StyledTh>
-        <StyledTh>Remover</StyledTh>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((categoriaKey,index) => {
-        return (
-          <tr key={index}>
-            <StyledTd>{categoriaKey.nombre}</StyledTd>
-            <StyledTd>{categoriaKey.descripcion}</StyledTd>
-            <StyledTd>
-              <StyledRemoverBtn onClick={() => {
-              // Llamada para eliminar una categoría
-              eliminarCategoria(`/categorias/${categoriaKey.id}`, 
-                (data) => {
-                  console.log("Categoría eliminada exitosamente:", data);
-                  // Realiza cualquier acción adicional que necesites aquí después de eliminar la categoría.
-                },
-                (error) => {
-                  console.error("Error al eliminar la categoría:", error);
-                  // Maneja el error de acuerdo a tus necesidades.
-                }
-              );
-              }}>
-                Remover
-              </StyledRemoverBtn>
-            </StyledTd>
-          </tr>
-        );
-      })}
-    </tbody>
-  </StyledTable>
+  const { data } = props
+  return (
+    <StyledTable>
+      <thead>
+        <tr>
+          <StyledTh>Nombre</StyledTh>
+          <StyledTh>Descripción</StyledTh>
+          <StyledTh>Remover</StyledTh>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((categoriaKey, index) => {
+          return (
+            <tr key={index}>
+              <StyledTd>{categoriaKey.nombre}</StyledTd>
+              <StyledTd>{categoriaKey.descripcion}</StyledTd>
+              <StyledTd>
+                <StyledRemoverBtn onClick={() => {
+                  // Llamada para eliminar una categoría
+                  eliminarCategoria(`/categorias/${categoriaKey.id}`,
+                    (data) => {
+                      console.log('Categoría eliminada exitosamente:', data)
+                      // Realiza cualquier acción adicional que necesites aquí después de eliminar la categoría.
+                    },
+                    (error) => {
+                      console.error('Error al eliminar la categoría:', error)
+                      // Maneja el error de acuerdo a tus necesidades.
+                    }
+                  )
+                }}
+                >
+                  Remover
+                </StyledRemoverBtn>
+              </StyledTd>
+            </tr>
+          )
+        })}
+      </tbody>
+    </StyledTable>
+  )
 }
 
 export default Tabla

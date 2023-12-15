@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { BsFillPlayBtnFill } from "react-icons/bs"
-import { Link } from "react-router-dom";
+import styled from 'styled-components'
+import { BsFillPlayBtnFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const StyledVideoImage = styled.img`
     width: 440px;
@@ -37,13 +37,15 @@ const LinkToVideo = styled(Link)`
 `
 
 const CardVideo = (props) => {
-    const { link, id } = props
-    const src = `https://img.youtube.com/vi/${link}/maxresdefault.jpg`
-    const url = `/verVideo/${id}`
-    return <LinkToVideo to={url}>
-    <StyledVideoImage src={src} alt={`Video de Youtube con identificador ${id}`} />
-    <PlayButton />
+  const { link, id } = props
+  const src = `https://img.youtube.com/vi/${link}/maxresdefault.jpg`
+  const url = `/verVideo/${id}`
+  return (
+    <LinkToVideo to={url}>
+      <StyledVideoImage src={src} alt={`Video de Youtube con identificador ${id}`} />
+      <PlayButton />
     </LinkToVideo>
+  )
 }
 
 export default CardVideo

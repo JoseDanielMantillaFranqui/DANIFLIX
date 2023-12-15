@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {FaCheckCircle} from "react-icons/fa"
+import styled from 'styled-components'
+import { FaCheckCircle } from 'react-icons/fa'
 
 const StyledExitoContainer = styled.section`
     background-color: #000000be;
@@ -35,11 +35,13 @@ const StyledP = styled.p`
 `
 
 const RegistradoConExito = (props) => {
-    const {titulo, success} = props
-    return <StyledExitoContainer success={success}>
-        <IconoExito />
-        <StyledP>{titulo}</StyledP>
+  const { titulo, success } = props
+  return (
+    <StyledExitoContainer success={success}>
+      <IconoExito />
+      <StyledP>{titulo}</StyledP>
     </StyledExitoContainer>
+  )
 }
 
 export default RegistradoConExito

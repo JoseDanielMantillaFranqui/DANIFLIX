@@ -1,6 +1,6 @@
-import styled from "styled-components"
-import { Button } from "@mui/material"
-import { Link } from "react-router-dom"
+import styled from 'styled-components'
+import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const StyledBoton = styled(Button)`
 && {
@@ -20,7 +20,7 @@ const StyledLink = styled(Link)`
 `
 
 const Boton = (props) => {
-    return <StyledLink to={props.link}><StyledBoton variant={props.varianteBoton}>{props.nombreBoton}</StyledBoton></StyledLink>
+  return <StyledLink to={props.link}><StyledBoton variant={props.varianteBoton}>{props.nombreBoton}</StyledBoton></StyledLink>
 }
 
-export default Boton;
+export default Boton

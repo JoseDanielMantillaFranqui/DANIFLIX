@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 const StyledFooter = styled.footer`
     display: flex;
@@ -23,9 +22,11 @@ const LogoFooter = styled.img`
 `
 
 const Footer = () => {
-    return <StyledFooter>
-        <LogoFooter src="/img/logo-daniflix.png" alt="Daniflix"/>
+  return (
+    <StyledFooter>
+      <LogoFooter src='/img/logo-daniflix.png' alt='Daniflix' />
     </StyledFooter>
+  )
 }
 
-export default Footer;
+export default Footer

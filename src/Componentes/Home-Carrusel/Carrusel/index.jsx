@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import MySlider from "../Slider";
-import { BannerCategoria } from "../../Banner";
+import styled from 'styled-components'
+import MySlider from '../Slider'
+import { BannerCategoria } from '../../Banner'
 
 const StyledCarrusel = styled.section`
     background-color: #212121;
@@ -30,11 +30,13 @@ const CarruselCategoria = styled(BannerCategoria)`
 `
 
 const Carrusel = (props) => {
-    const { marginTop, marginTopMobile, marginTopTablet, marginTopLaptop, DatosCarrusel, categoriaProp } = props
-    return <StyledCarrusel margintop={marginTop} margintopmobile={marginTopMobile} margintoptablet={marginTopTablet} margintoplaptop={marginTopLaptop} >
-        { categoriaProp === undefined ? <div></div> : <CarruselCategoria>{categoriaProp}</CarruselCategoria> }
-        <MySlider DatosCarrusel={DatosCarrusel}/>
+  const { marginTop, marginTopMobile, marginTopTablet, marginTopLaptop, DatosCarrusel, categoriaProp } = props
+  return (
+    <StyledCarrusel margintop={marginTop} margintopmobile={marginTopMobile} margintoptablet={marginTopTablet} margintoplaptop={marginTopLaptop}>
+      {categoriaProp === undefined ? <div /> : <CarruselCategoria>{categoriaProp}</CarruselCategoria>}
+      <MySlider DatosCarrusel={DatosCarrusel} />
     </StyledCarrusel>
+  )
 }
 
-export default Carrusel;
+export default Carrusel

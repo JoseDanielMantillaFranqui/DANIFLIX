@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { buscar, extraerMetaDatosDeVideo } from "../datos";
+import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
+import { useVideo } from '../hooks/useVideo'
+import { BiSolidShow, BiSolidHide } from 'react-icons/bi'
+
+import '../index.css'
 
 const VideoContainer = styled.main`
     padding: 8rem 0;
@@ -54,37 +56,33 @@ const VideoTitleDescription = styled.h4`
     }
 `
 
-const VideoDescription = styled.p`
-    width: 70%;
-    color: #fff;
-    word-wrap: break-word;
-    @media screen and (max-width: 900px) {
-        width: 90%;
-    }
+const ShowDescriptionIcon = styled(BiSolidShow)`
+font-size: 2rem;
+color: #fff; 
+cursor: pointer;
+`
+
+const HideDescriptionIcon = styled(BiSolidHide)`
+font-size: 2rem;
+color: #ffffff73; 
+cursor: pointer;
 `
 
 const Video = () => {
+  const { id } = useParams()
 
-    const [idDeYouTube, setIdDeYoutube] = useState('')
-    const [metaData, setMetaData] = useState({});
-    const apiKey = "AIzaSyC31MFT5CrNv9Z48az6AUJtUGzEGLt9KmM";
-    const { id } = useParams();
+  const { idDeYouTube, metaData, showDescription, handleShowDescription } = useVideo({ id })
 
-    useEffect(() => {
-        buscar(`/videos/${id}`, setIdDeYoutube)
-    }, [])
-
-    useEffect(() => {
-        extraerMetaDatosDeVideo(`videos?id=${idDeYouTube.Link}&part=snippet&key=${apiKey}`, setMetaData)
-    }, [idDeYouTube])
-
-    const src = `https://www.youtube.com/embed/${idDeYouTube.Link}`
-    return <VideoContainer>
-        <StyledVideo src={src} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
-        <VideoTitle>{metaData.title}</VideoTitle>
-        <VideoTitleDescription>Descripción:</VideoTitleDescription>
-        <VideoDescription>{metaData.description}</VideoDescription>
+  const src = `https://www.youtube.com/embed/${idDeYouTube.Link}`
+  return (
+    <VideoContainer>
+      <StyledVideo src={src} allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowFullScreen />
+      <VideoTitle>{metaData.title}</VideoTitle>
+      <VideoTitleDescription>Descripción:</VideoTitleDescription>
+      {showDescription === true ? <ShowDescriptionIcon onClick={handleShowDescription} /> : <HideDescriptionIcon onClick={handleShowDescription} />}
+      <p className={showDescription === true ? 'show' : 'hidden'}>{metaData.description}</p>
     </VideoContainer>
+  )
 }
 
 export default Video

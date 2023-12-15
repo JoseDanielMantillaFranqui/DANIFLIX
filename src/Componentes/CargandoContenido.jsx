@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { CircularProgress } from "@mui/material";
+import styled from 'styled-components'
+import { CircularProgress } from '@mui/material'
 
 const StyledCargandoContainer = styled.section`
     margin-top: 37rem;
@@ -35,10 +35,12 @@ const StyledCargandoCirculo = styled(CircularProgress)`
 `
 
 const CargandoContenido = () => {
-    return <StyledCargandoContainer>
-        <StyledCargandoTitulo>Cargando...</StyledCargandoTitulo>
-        <StyledCargandoCirculo color="inherit" size={100}/>
+  return (
+    <StyledCargandoContainer>
+      <StyledCargandoTitulo>Cargando...</StyledCargandoTitulo>
+      <StyledCargandoCirculo color='inherit' size={100} />
     </StyledCargandoContainer>
+  )
 }
 
 export default CargandoContenido

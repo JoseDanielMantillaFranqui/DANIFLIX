@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { TextField } from "@mui/material";
+import styled from 'styled-components'
+import { TextField } from '@mui/material'
 
 const StyledCampoTexto = styled(TextField)`
   && {
@@ -25,24 +25,22 @@ const StyledCampoTexto = styled(TextField)`
       transform: scaleX(1); // Asegura que la línea esté visible
     }
   }
-`;
+`
 
 const CampoTexto = (props) => {
-    const { label, value, setValue, isValid, helperText, validator} = props
+  const { label, value, setValue, isValid, helperText, validator } = props
   return (
-    <StyledCampoTexto 
-    variant="filled" 
-    id="filled-basic" 
-    label={label} 
-    value={value} 
-    onBlur={(e) => setValue({value:e.target.value, valid:validator(e.target.value)})}
-    onChange={(e) => setValue({value:e.target.value, valid:null})} 
-    error={isValid === false ? true : false}
-    helperText={ isValid === false && helperText }
+    <StyledCampoTexto
+      variant='filled'
+      id='filled-basic'
+      label={label}
+      value={value}
+      onBlur={(e) => setValue({ value: e.target.value, valid: validator(e.target.value) })}
+      onChange={(e) => setValue({ value: e.target.value, valid: null })}
+      error={isValid === false}
+      helperText={isValid === false && helperText}
     />
-  );
-};
+  )
+}
 
-export default CampoTexto;
-
-
+export default CampoTexto

@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hidden {
+  animation: sweepOut 1s ease-in-out;
+  display: none;
+  transition: 1s all;
+}
+
+.show {
+  display: block;
+  animation: sweepDown 1s ease-in-out;
+  width: 70%;
+  color: #fff;
+  word-wrap: break-word;
+  transition: 1s all;
+}
+
+@keyframes sweepDown {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sweepOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .show {
+    width: 90%;
+  }
+}

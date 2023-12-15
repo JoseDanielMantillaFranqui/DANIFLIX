@@ -1,6 +1,6 @@
-import Boton from "./Boton";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Boton from './Boton'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const StyledHeader = styled.header`
     display: flex;
@@ -27,11 +27,13 @@ const LogoLink = styled(Link)`
 `
 
 const Header = (props) => {
-    const {showBtn} = props
-    return <StyledHeader>
-        <LogoLink to="/"><LogoHeader src="/img/logo-daniflix.png" alt="Daniflix"/></LogoLink>
-        { showBtn === true ? <Boton varianteBoton="outlined" nombreBoton="Nuevo Video" link="/nuevoVideo"/> : <div></div>}
+  const { showBtn } = props
+  return (
+    <StyledHeader>
+      <LogoLink to='/'><LogoHeader src='/img/logo-daniflix.png' alt='Daniflix' /></LogoLink>
+      {showBtn === true ? <Boton varianteBoton='outlined' nombreBoton='Nuevo Video' link='/nuevoVideo' /> : <div />}
     </StyledHeader>
+  )
 }
 
-export default Header;
+export default Header

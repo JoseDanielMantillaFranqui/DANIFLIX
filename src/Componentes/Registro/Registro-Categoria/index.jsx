@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { FormTitulo, BotonGuardar, BotonLimpiar } from "../Registro-Video";
-import CampoTexto from "../../CampoTexto";
-import { validarNombreCategoria, validarDescripcion } from "./validaciones";
-import { TextField } from "@mui/material";
-import { useState, useEffect } from "react";
-import Tabla from "../../Tabla";
-import RegistradoConExito from "../../RegistradoConExito";
-import { enviarDatos } from "../../../datos";
-import { buscar } from "../../../datos";
-import { v4 as generadorID } from "uuid";
-//import data from "../../../datos/datos-iniciales.json"
+import styled from 'styled-components'
+import { FormTitulo, BotonGuardar, BotonLimpiar } from '../Registro-Video'
+import CampoTexto from '../../CampoTexto'
+import { validarNombreCategoria, validarDescripcion } from './validaciones'
+import { TextField } from '@mui/material'
+import { useState, useEffect } from 'react'
+import Tabla from '../../Tabla'
+import RegistradoConExito from '../../RegistradoConExito'
+import { enviarDatos, buscar } from '../../../datos'
+
+import { v4 as generadorID } from 'uuid'
+// import data from "../../../datos/datos-iniciales.json"
 
 const StyledFormNewCategory = styled.form`
     width: 100%;
@@ -59,83 +59,86 @@ const Textarea = styled(TextField)`
 `
 
 const FormularioNuevaCategoria = () => {
-
-  const [data, setData] = useState({ "categorias":[] });
+  const [data, setData] = useState({ categorias: [] })
 
   useEffect(() => {
-   buscar(`/db`, setData)
-}, [])
+    buscar('/db', setData)
+  }, [])
 
-    const [ nombreCategoria, setNombreCategoria ] = useState({ value: "", valid: null})
-    const [ descripcion, setDescripcion ] = useState({value:"", valid:null})
-    const [ success, setSuccess ] = useState(false)
+  const [nombreCategoria, setNombreCategoria] = useState({ value: '', valid: null })
+  const [descripcion, setDescripcion] = useState({ value: '', valid: null })
+  const [success, setSuccess] = useState(false)
 
-    
-    useEffect(() => {
-      if (success) {
-        // Si success es true, programamos un timeout para volverlo a false después de 5 segundos.
-        const timer = setTimeout(() => {
-          setSuccess(false);
-        }, 5000); // 5000 milisegundos = 5 segundos
-  
-        // Limpia el timeout si el componente se desmonta antes de que expire el tiempo.
-        return () => clearTimeout(timer);
-      }
-    }, [success]); // Se ejecutará cuando el estado success cambie.
+  useEffect(() => {
+    if (success) {
+      // Si success es true, programamos un timeout para volverlo a false después de 5 segundos.
+      const timer = setTimeout(() => {
+        setSuccess(false)
+      }, 5000) // 5000 milisegundos = 5 segundos
 
-    return <StyledFormNewCategory onSubmit={(e) => {
-        e.preventDefault()
-        const isCategoryValid = validarNombreCategoria(nombreCategoria.value)
-        setNombreCategoria({value:nombreCategoria.value, valid:isCategoryValid})
-        const isDescriptionValid = validarDescripcion(descripcion.value)
-        setDescripcion({value:descripcion.value,valid:isDescriptionValid})
-        if (nombreCategoria.valid === true && descripcion.valid === true) {
-           const datosAEnviar =  {
-            "nombre": nombreCategoria.value,
-            "descripcion" : descripcion.value,
-            "id": generadorID()
-           }
-           enviarDatos(`/categorias`, datosAEnviar, 
-               (respuesta) => {
-                   console.log("Solicitud POST exitosa:", respuesta);
-                   // Realizar acciones adicionales en caso de éxito
-               },
-               (error) => {
-                   console.error("Solicitud POST fallida:", error);
-                   // Manejar el error de la solicitud
-               }
-               ); 
-            setSuccess(true);        
-        } else {
-            console.log("La categoria es",nombreCategoria.valid,"La descripcion es",descripcion.valid)
+      // Limpia el timeout si el componente se desmonta antes de que expire el tiempo.
+      return () => clearTimeout(timer)
+    }
+  }, [success]) // Se ejecutará cuando el estado success cambie.
+
+  return (
+    <StyledFormNewCategory onSubmit={(e) => {
+      e.preventDefault()
+      const isCategoryValid = validarNombreCategoria(nombreCategoria.value)
+      setNombreCategoria({ value: nombreCategoria.value, valid: isCategoryValid })
+      const isDescriptionValid = validarDescripcion(descripcion.value)
+      setDescripcion({ value: descripcion.value, valid: isDescriptionValid })
+      if (nombreCategoria.valid === true && descripcion.valid === true) {
+        const datosAEnviar = {
+          nombre: nombreCategoria.value,
+          descripcion: descripcion.value,
+          id: generadorID()
         }
-    }}>
-      {success === true && <RegistradoConExito titulo="Se ha agregado una categoria con éxito"/>}
-        <FormTitulo>Nueva Categoria</FormTitulo>
-        <CampoTexto label="Nombre" value={nombreCategoria.value} setValue={setNombreCategoria} isValid={nombreCategoria.valid} helperText="Ingresa al menos tres caracteres" validator={validarNombreCategoria}/>
-        <Textarea
-          id="filled-textarea"
-          label="Descripcion de Categoria"
-          placeholder="Escriba una descripción de la categoría a crear"
-          multiline
-          variant="filled"
-          value={descripcion.value}
-          onChange={(e) => {setDescripcion({value:e.target.value, valid:null})}}
-          onBlur={(e) => {setDescripcion({value:e.target.value,valid:validarDescripcion(e.target.value)})}}
-          error={ descripcion.valid === false ? true : false }
-          helperText={ descripcion.valid === false ? "Debe escribir más de 10 caracteres y menos de 100" : "" }
-        />
-        <BotonesContenedor>
-            <BotonGuardar variant="contained" type="submit">Guardar</BotonGuardar>
-            <BotonLimpiar 
-            variant="contained" 
-            onClick={() => {
-                setNombreCategoria({ value:"", valid:null })
-                setDescripcion({value:"",valid:null})
-            }}>Limpiar</BotonLimpiar>
-        </BotonesContenedor>
-        <Tabla data={data.categorias}/>
+        enviarDatos('/categorias', datosAEnviar,
+          (respuesta) => {
+            console.log('Solicitud POST exitosa:', respuesta)
+            // Realizar acciones adicionales en caso de éxito
+          },
+          (error) => {
+            console.error('Solicitud POST fallida:', error)
+            // Manejar el error de la solicitud
+          }
+        )
+        setSuccess(true)
+      } else {
+        console.log('La categoria es', nombreCategoria.valid, 'La descripcion es', descripcion.valid)
+      }
+    }}
+    >
+      {success === true && <RegistradoConExito titulo='Se ha agregado una categoria con éxito' />}
+      <FormTitulo>Nueva Categoria</FormTitulo>
+      <CampoTexto label='Nombre' value={nombreCategoria.value} setValue={setNombreCategoria} isValid={nombreCategoria.valid} helperText='Ingresa al menos tres caracteres' validator={validarNombreCategoria} />
+      <Textarea
+        id='filled-textarea'
+        label='Descripcion de Categoria'
+        placeholder='Escriba una descripción de la categoría a crear'
+        multiline
+        variant='filled'
+        value={descripcion.value}
+        onChange={(e) => { setDescripcion({ value: e.target.value, valid: null }) }}
+        onBlur={(e) => { setDescripcion({ value: e.target.value, valid: validarDescripcion(e.target.value) }) }}
+        error={descripcion.valid === false}
+        helperText={descripcion.valid === false ? 'Debe escribir más de 10 caracteres y menos de 100' : ''}
+      />
+      <BotonesContenedor>
+        <BotonGuardar variant='contained' type='submit'>Guardar</BotonGuardar>
+        <BotonLimpiar
+          variant='contained'
+          onClick={() => {
+            setNombreCategoria({ value: '', valid: null })
+            setDescripcion({ value: '', valid: null })
+          }}
+        >Limpiar
+        </BotonLimpiar>
+      </BotonesContenedor>
+      <Tabla data={data.categorias} />
     </StyledFormNewCategory>
+  )
 }
 
 export default FormularioNuevaCategoria
