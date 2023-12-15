@@ -1,17 +1,17 @@
-import Header from "../Componentes/Header";
-import Banner from "../Componentes/Banner";
-import Footer from "../Componentes/Footer";
-import RenderCarrusel from "../Componentes/Home-Carrusel/RenderCarrusel";
+import Header from '../Componentes/Header'
+import Banner from '../Componentes/Banner'
+import Footer from '../Componentes/Footer'
+import RenderCarrusel from '../Componentes/Home-Carrusel/RenderCarrusel'
 
 const Home = () => {
   return (
     <>
-      <Header showBtn={true}/>
+      <Header showBtn />
       <Banner />
       <RenderCarrusel />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
