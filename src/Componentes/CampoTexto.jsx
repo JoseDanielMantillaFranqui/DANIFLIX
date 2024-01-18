@@ -27,16 +27,15 @@ const StyledCampoTexto = styled(TextField)`
   }
 `
 
-const CampoTexto = (props) => {
-  const { label, value, setValue, isValid, helperText, validator } = props
+const CampoTexto = ({ label, value, manejarBlur, manejarChange, isValid, helperText }) => {
   return (
     <StyledCampoTexto
       variant='filled'
       id='filled-basic'
       label={label}
       value={value}
-      onBlur={(e) => setValue({ value: e.target.value, valid: validator(e.target.value) })}
-      onChange={(e) => setValue({ value: e.target.value, valid: null })}
+      onBlur={manejarBlur}
+      onChange={manejarChange}
       error={isValid === false}
       helperText={isValid === false && helperText}
     />

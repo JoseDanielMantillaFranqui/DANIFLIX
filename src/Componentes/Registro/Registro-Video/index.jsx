@@ -3,11 +3,8 @@ import CampoTexto from '../../CampoTexto'
 import SelectCategoria from '../../CampoSelect'
 import RegistradoConExito from '../../RegistradoConExito'
 import { Button } from '@mui/material'
-import { useState, useEffect } from 'react'
-import { validarLink, validarCategoria } from './validaciones'
 import { Link } from 'react-router-dom'
-import { enviarDatos } from '../../../datos'
-import { v4 as generadorID } from 'uuid'
+import { useAddVideo } from '../../../hooks/useAddVideo'
 
 const StyledFormNewVideo = styled.form`
     width: 100%;
@@ -85,63 +82,29 @@ const BotonNuevaCategoria = styled(Button)`
 `
 
 const FormularioNuevoVideo = () => {
-  const [link, setLink] = useState({ value: '', valid: null })
-  const [categoria, setCategoria] = useState({ value: '', valid: null })
-  const [success, setSuccess] = useState(false)
-
-  useEffect(() => {
-    if (success) {
-      // Si success es true, programamos un timeout para volverlo a false después de 5 segundos.
-      const timer = setTimeout(() => {
-        setSuccess(false)
-      }, 5000) // 5000 milisegundos = 5 segundos
-
-      // Limpia el timeout si el componente se desmonta antes de que expire el tiempo.
-      return () => clearTimeout(timer)
-    }
-  }, [success]) // Se ejecutará cuando el estado success cambie.
+  const {
+    link,
+    categoria,
+    success,
+    manejarChangeLink,
+    manejarBlurLink,
+    manejarChangeCategoria,
+    manejarBlurCategoria,
+    manejarEnvioDatos,
+    limpiarValoresInputs
+  } = useAddVideo()
 
   return (
-    <StyledFormNewVideo onSubmit={(e) => {
-      e.preventDefault()
-      const isLinkValid = validarLink(link.value)
-      setLink({ value: link.value, valid: isLinkValid })
-      const isCategoryValid = validarCategoria(categoria.value)
-      setCategoria({ value: categoria.value, valid: isCategoryValid })
-      if (link.valid === true && categoria.valid) {
-        const datosAEnviar = {
-          Link: link.value,
-          Categoria: categoria.value,
-          id: generadorID()
-        }
-        enviarDatos('/videos', datosAEnviar,
-          (respuesta) => {
-            console.log('Solicitud POST exitosa:', respuesta)
-            // Realizar acciones adicionales en caso de éxito
-          },
-          (error) => {
-            console.error('Solicitud POST fallida:', error)
-            // Manejar el error de la solicitud
-          }
-        )
-        setSuccess(true)
-      } else {
-        console.log('EL link es', link.valid, 'y la categoria es', categoria.valid)
-      }
-    }}
-    >
+    <StyledFormNewVideo onSubmit={manejarEnvioDatos}>
       {success === true && <RegistradoConExito titulo='Se ha agregado un video con éxito' />}
       <FormTitulo>NUEVO VIDEO</FormTitulo>
-      <CampoTexto label='ID del Video' value={link.value} setValue={setLink} isValid={link.valid} helperText='Ingresa un ID de video de YT válido' validator={validarLink} />
-      <SelectCategoria value={categoria.value} setCategoria={setCategoria} isValid={categoria.valid} />
+      <CampoTexto label='ID del Video' value={link.value} manejarChange={manejarChangeLink} manejarBlur={manejarBlurLink} isValid={link.valid} helperText='Ingresa un ID de video de YT válido' />
+      <SelectCategoria value={categoria.value} manejarChange={manejarChangeCategoria} manejarBlur={manejarBlurCategoria} isValid={categoria.valid} />
       <BotonesContainer>
         <BotonesPrincipalesContainer>
           <BotonGuardar variant='contained' type='submit'>Guardar</BotonGuardar>
           <BotonLimpiar
-            variant='contained' onClick={() => {
-              setCategoria({ value: '', valid: null })
-              setLink({ value: '', valid: null })
-            }}
+            variant='contained' onClick={limpiarValoresInputs}
           >Limpiar
           </BotonLimpiar>
         </BotonesPrincipalesContainer>

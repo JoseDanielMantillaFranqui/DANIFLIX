@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { eliminarCategoria } from '../datos'
 
 const StyledTable = styled.table`
     background-color: #e10b0b33;
@@ -25,7 +24,7 @@ const StyledTd = styled.td`
     font-size: 1.2rem;
 `
 
-const StyledRemoverBtn = styled.button`
+const StyledRemoverBtn = styled.div`
     background-color: black;
     color: #b81d1d;
     font-size: 1.2rem;
@@ -38,8 +37,7 @@ const StyledRemoverBtn = styled.button`
     }
 `
 
-const Tabla = (props) => {
-  const { data } = props
+const Tabla = ({ data, manejarClickEliminarCategoria }) => {
   return (
     <StyledTable>
       <thead>
@@ -58,16 +56,7 @@ const Tabla = (props) => {
               <StyledTd>
                 <StyledRemoverBtn onClick={() => {
                   // Llamada para eliminar una categoría
-                  eliminarCategoria(`/categorias/${categoriaKey.id}`,
-                    (data) => {
-                      console.log('Categoría eliminada exitosamente:', data)
-                      // Realiza cualquier acción adicional que necesites aquí después de eliminar la categoría.
-                    },
-                    (error) => {
-                      console.error('Error al eliminar la categoría:', error)
-                      // Maneja el error de acuerdo a tus necesidades.
-                    }
-                  )
+                  manejarClickEliminarCategoria(categoriaKey)
                 }}
                 >
                   Remover

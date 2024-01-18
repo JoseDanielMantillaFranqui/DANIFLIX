@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 import { Select, FormControl, InputLabel, MenuItem, FormHelperText } from '@mui/material'
-// import data from "../datos/datos-iniciales.json"
 import { useState, useEffect } from 'react'
 import { buscar } from '../datos'
-import { validarCategoria } from './Registro/Registro-Video/validaciones'
 
 const StyledFormControl = styled(FormControl)`
   && {
@@ -68,7 +66,7 @@ const StyledMenuItem = styled(MenuItem)`
 `
 
 const SelectCategoria = (props) => {
-  const { value, setCategoria, isValid } = props
+  const { value, manejarChange, manejarBlur, isValid } = props
 
   const [data, setData] = useState({ categorias: [] })
 
@@ -89,16 +87,9 @@ const SelectCategoria = (props) => {
           id='demo-simple-select-filled'
           MenuProps={{ PaperProps: { style: { backgroundColor: '#212121' } } }}
           value={value}
-          onChange={(e) => {
-            setCategoria({ value: e.target.value, valid: null })
-          }}
-          onBlur={(e) => {
-            setCategoria({ value: e.target.value, valid: validarCategoria(e.target.value) })
-          }}
+          onChange={manejarChange}
+          onBlur={manejarBlur}
         >
-          {/* <StyledMenuItem value="Ciencia">Ciencia</StyledMenuItem>
-          <StyledMenuItem value="Tecnología">Tecnología</StyledMenuItem>
-            <StyledMenuItem value="Música">Música</StyledMenuItem> */}
           {categorias.map((categoria, index) => (
             <StyledMenuItem key={index} value={categoria.nombre}>{categoria.nombre}</StyledMenuItem>
           ))}
