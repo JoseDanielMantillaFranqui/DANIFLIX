@@ -11,6 +11,10 @@ const StyledContainer = styled.section`
   background-blend-mode: soft-light;
   background-position: center;
 
+  &:active {
+    filter: invert(1);
+  }
+
   @media screen and (max-width:480px) {
     height: 200vw;
     width: 100vw;
